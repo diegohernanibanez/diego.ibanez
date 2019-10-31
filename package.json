@@ -1,0 +1,30 @@
+{
+  "name": "curso-mearn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm run start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegohernanibanez/curso-mearn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diegohernanibanez/curso-mearn/issues"
+  },
+  "homepage": "https://github.com/diegohernanibanez/curso-mearn#readme",
+  "dependencies": {
+    "concurrently": "^5.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
