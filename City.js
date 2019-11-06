@@ -6,4 +6,6 @@ let citiesSchema = new mongoose.Schema({
   
 })
 
+
+
 module.exports = mongoose.model('City', citiesSchema);

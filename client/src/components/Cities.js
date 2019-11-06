@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 function Cities () {
   return (
     <div>
@@ -8,5 +9,8 @@ function Cities () {
       </ul>
     </div>
   );
-}
+} 
+
+
+
 export default Cities;
