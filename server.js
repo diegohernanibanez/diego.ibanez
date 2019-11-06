@@ -3,11 +3,11 @@ let mongoose = require('mongoose');
 var app = express();
 const cors = require('cors');
 let city = require('./City')
-const BodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 const port = process.env.PORT || 5000;
 
-app.use(BodyParser.json());
-app.use(BodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect("mongodb+srv://diegohernanibanez:di66385191@comision7-ubymn.mongodb.net/cities?retryWrites=true&w=majority",
 
@@ -27,20 +27,12 @@ app.get("/cities", cors(), async (req, res) => {
   city.find({}, (err, respuesta) => {
 
     if(err) return err;
-
-    console.log(respuesta);
     res.send(respuesta);
   });
 
 });
 
-
-
-app.listen(port, () => {
-  console.log("Listening at :5000...");
-});
-
-
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
 /* City.insertMany(
