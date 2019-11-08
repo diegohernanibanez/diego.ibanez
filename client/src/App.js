@@ -41,7 +41,7 @@ render() {
       <main>
         <div className="mt-5 mb-5" >
           <h3>Start Browsing</h3>
-          <Button url="/Cities" className="img-fluid w-30 m-5" image={circledArrow} altText="arrow"/>
+          <Button url="/Cities" className="img-fluid  w-25 m-5" image={circledArrow} altText="arrow"/>
         </div>
         <Account/>
       </main>
