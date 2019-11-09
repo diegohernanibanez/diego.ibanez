@@ -13,7 +13,7 @@ class App extends Component {
     post: '',
     responseToPost: '',
   };
-  
+
   handleSubmit = async e => {
     e.preventDefault();
     const response = await fetch('/api/world', {
@@ -24,28 +24,28 @@ class App extends Component {
       body: JSON.stringify({ post: this.state.post }),
     });
     const body = await response.text();
-    
+
     this.setState({ responseToPost: body });
   };
-  
-render() {
+
+  render() {
     return (
-      <div className="App text-center">
-      <header className="App-header">
-        <img src={logo} className="App-logo w-50 p-3" alt="logo" />
-        <p className="font-weight-bold">
-          Find your perfect trip, designed by<br >
-          </br>insiders who know and love their cities.
+        <div className="App text-center">
+          <header className="App-header">
+            <img src={logo} className="App-logo w-50 p-3" alt="logo" />
+            <p className="font-weight-bold">
+              Find your perfect trip, designed by<br >
+              </br>insiders who know and love their cities.
         </p>
-      </header>
-      <main>
-        <div className="mt-5 mb-5" >
-          <h3>Start Browsing</h3>
-          <Button url="/Cities" className="img-fluid  w-25 m-5" image={circledArrow} altText="arrow"/>
+          </header>
+          <main>
+            <div className="mt-5 mb-5" >
+              <h3>Start Browsing</h3>
+              <Button url="/Cities" className="img-fluid  w-25 m-5" image={circledArrow} altText="arrow" />
+            </div>
+            <Account />
+          </main>
         </div>
-        <Account/>
-      </main>
-    </div>
     );
   }
 }

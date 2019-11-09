@@ -15,8 +15,8 @@ export default class CitiesList extends Component {
     return (
       <div>
         {
-          this.props.data.map((ciudad)=>
-          <Cities ciudad={ciudad} key={ciudad._id} />
+          this.props.data.map((ciudad) =>
+            <Cities ciudad={ciudad} key={ciudad._id} />
           )
         }
       </div>
