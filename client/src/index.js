@@ -6,11 +6,14 @@ import LogIn from './components/LogIn';
 import CreateAccount from './components/CreateAccount';
 import Cities from  "./components/Cities";
 import Footer from './components/Footer'
+import store from './store'; 
+import { Provider } from 'react-redux';
 
 
 class Index extends Component{
   render(){
     return(
+      <Provider store={store}>
       <BrowserRouter>
       <div className="Routing">
         <Route exact path="/" component={App} />
@@ -21,6 +24,7 @@ class Index extends Component{
         
       </div>
     </BrowserRouter>
+    </Provider>
     )
   }
 }

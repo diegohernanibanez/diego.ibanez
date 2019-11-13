@@ -1,5 +1,5 @@
-import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
-import reducer from './reducers';
+import {createStore, combineReducers} from 'redux';
+import reducer from './reducers/reducer';
 
 const reducers = combineReducers({
     reducer
