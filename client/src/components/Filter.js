@@ -4,23 +4,23 @@ class filterForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      citiesFilter: ""
+      filter: ""
     }
   }
   
   handleChange = (e) => {
     this.setState({
-      citiesFilter: e.target.value
+      filter: e.target.value
     })
-    this.props.onChange(event.target.value)
+    this.props.onChange(e.target.value)
   }
   
   render() {
     return (
       <div>
-        <label htmlFor="filter">Filter by City: </label>
-        <input type="text" id="filter" 
-          value={this.state.citiesFilter} 
+        <label htmlFor="filter">{this.props.title} </label>
+        <input type="text" id="filter" placeholder={this.props.placeholder}
+          value={this.state.filter} 
           onChange={this.handleChange}/>
       </div>
       )

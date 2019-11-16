@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import CitiesList from "./CitiesList";
 import axios from "axios";
+import CitiesList from './CitiesList'
 import { connect } from 'react-redux';
 import updateEstado from '../actions/action'
 
@@ -32,7 +32,7 @@ class Cities extends Component {
   componentDidMount() {
     this.fetchQuotes();
   }
-
+  
   fetchQuotes = () => {
     axios
       .get(URL)
@@ -45,18 +45,22 @@ class Cities extends Component {
       .catch(e => console.log(e));
   };
 
-  
-
   render() {
-    const title = "Ciudades disponibles";
+
+    const title = "Cities";
+
+    // let citiesList = this.state.ciudades.map(
+    //   (ciudad)=>{ return <li>{ciudad.name}, {ciudad.country} </li>
+    // });
+
     return (
       
       <div className="App">
         <h2 className="App-title">{title}</h2>
         <div>
           {!this.props.item
-            ? "Fetching quotes..."
-            : <CitiesList data={this.state.ciudades} />
+            ? " " :<CitiesList data={this.state.ciudades} />
+            // : citiesList 
           }
         </div>
       </div>

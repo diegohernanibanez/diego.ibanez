@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import Filter from './Filter'
 export class Cities extends Component {
   render() {
     return (
@@ -15,24 +15,27 @@ export default class CitiesList extends Component {
   constructor(props){
     super(props);
     this.state ={
-      search: ""
+      searchCity: ''
     }
+    this.updateSearch= this.updateSearch.bind(this)
   }
   
-  updateSearch(event) {
-    this.setState({ search: event.target.value.substr(0, 20) });
+  updateSearch(stringFilter) {
+    this.setState({ searchCity: stringFilter.substr(0, 20) });
+
   };
 
   render() {
     let filteredContacts = this.props.data.filter(
       (city) => {
-        return city.name.toLowerCase().indexOf(this.state.search) !== -1;
+        return city.country.toLowerCase().indexOf(this.state.searchCity) !== -1 || city.name.toLowerCase().indexOf(this.state.searchCity) !== -1;
       }
+
     );
     return (
       <div>
-        <p>Buscar Por Ciudad</p>
-        <input type='text' value={this.state.search} onChange={this.updateSearch.bind(this)}/>
+        <Filter onChange={this.updateSearch} placeholder='Search Cities'/>
+        
         {
           filteredContacts.map((ciudad) =>
             <Cities ciudad={ciudad} key={ciudad._id} />
