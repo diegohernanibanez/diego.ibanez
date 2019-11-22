@@ -1,5 +1,6 @@
-const updateEstado = (data) =>{
-    return { type: 'GET_ITEMS', payload: data}
+export const GET_ITEMS = 'GET_ITEMS'
+const updateEstado = () =>{
+    return { type: GET_ITEMS}
 }
 
 export default updateEstado

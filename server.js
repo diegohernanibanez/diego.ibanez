@@ -2,7 +2,8 @@ const express = require('express');
 let mongoose = require('mongoose');
 var app = express();
 const cors = require('cors');
-let city = require('./City')
+let city = require('./City');
+let itinerary = require('./Itinerary');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 5000;
 
@@ -25,103 +26,50 @@ mongoose.connect("mongodb+srv://diegohernanibanez:di66385191@comision7-ubymn.mon
 app.get("/cities", cors(), async (req, res) => {
 
   city.find({}, (err, respuesta) => {
-
-    if(err) return err;
+    if (err) return err;
     res.send(respuesta);
   });
 
 });
 
+app.get("/cities/:makeId", (req, res) => {
+  console.log(req.params.makeId);
+  res.send("Hola mundo")
+})
+
+app.post('/cities', (req, res) => {
+  const newCity = new city({
+    name: req.body.name,
+    country: req.body.country
+  });
+
+  city.find(
+    {
+      name: req.body.name,
+      country: req.body.country
+    },
+    (err, respuesta) => {
+      if (respuesta.length !== 0) {
+
+        res.send("Ciudad Repetida")
+
+      } else {
+
+          newCity.save()
+
+            .then(city => {
+              res.send(city)
+            })
+
+            .catch(err => {
+              res.status(500).send("Server error")
+            })
+        }
+      }
+    );
+});
+
+
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-
-/* City.insertMany(
-  [
-    {
-      "id": 1,
-      "name": ["Hamburg", "Berlin", "Munich"],
-      "country": "Germany"
-    },
-    {
-      "id": 2,
-      "name": ["Rome", "Milan", "Napoli"],
-      "country": "Italy"
-    },
-    {
-      "id": 3,
-      "name": ["Paris", "Berlin", "Munich"],
-      "country": "France"
-    },
-    {
-      "id": 4,
-      "name": ["London", "Milan", "Napoli"],
-      "country": "UK"
-    },
-    {
-      "id": 5,
-      "name": ["Madrid", "Milan", "Napoli"],
-      "country": "Spain"
-    },
-    {
-      "id": 6,
-      "name": ["Copenhagen"],
-      "country": "Denmakr"
-    },
-    {
-      "id": 7,
-      "name": ["Oslo"],
-      "country": "Norway"
-    },
-    {
-      "id": 8,
-      "name": ["Bucharest"],
-      "country": "Rumanua"
-    },
-    {
-      "id": 9,
-      "name": ["Budapest"],
-      "country": "Hungary"
-    },
-    {
-      "id": 10,
-      "name": ["Warsaw"],
-      "country": "Poland"
-    },
-    {
-      "id": 5,
-      "name": ["Belgrade"],
-      "country": "Serbia"
-    },
-    {
-      "id": 11,
-      "name": ["Vienna"],
-      "country": "Austria"
-    },
-    {
-      "id": 12,
-      "name": ["Czech Republic"],
-      "country": "Prague"
-    },
-    {
-      "id": 13,
-      "name": ["Sofia"],
-      "country": "Bulgaria"
-    },
-    {
-      "id": 14,
-      "name": ["Stockholm"],
-      "country": "Sweden"
-    },
-    {
-      "id": 15,
-      "name": ["Helsinki"],
-      "country": "Finland"
-    }
-  ], (err, doc) => {
-    if (err)
-      throw err;
-    console.log(doc);
-  }
-)
-
-}) */

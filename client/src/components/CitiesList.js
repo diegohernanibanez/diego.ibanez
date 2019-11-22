@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import Filter from './Filter'
+import { Link } from 'react-router-dom';
+
 export class Cities extends Component {
   render() {
     return (
       <li key={this.props.ciudad._id}>
-        {this.props.ciudad.name}, {this.props.ciudad.country}
+        <Link to={`ItinerariesList/${this.props.ciudad._id}`}>{this.props.ciudad.name}, {this.props.ciudad.country}</Link>
       </li>
     )
   }

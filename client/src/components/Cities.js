@@ -2,22 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import CitiesList from './CitiesList'
 import { connect } from 'react-redux';
-import updateEstado from '../actions/action'
+import updateEstado from '../actions/action';
+
 
 const URL = "http://localhost:5000/cities";
-
-
-const mapStateProps = state => {
-  return {
-    item: state.reducer.mostrar
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateEstado: (data) => dispatch(updateEstado(data)),
-  };
-};
 
 class Cities extends Component {
 
@@ -38,7 +26,7 @@ class Cities extends Component {
       .get(URL)
       .then(response => {
         console.log(response);
-        this.props.updateEstado(true)
+        this.props.updateEstado()
         this.setState({ ciudades: response.data, isFetching: false });
         console.log(this.state.ciudades);
       })
@@ -59,7 +47,7 @@ class Cities extends Component {
         <h2 className="App-title">{title}</h2>
         <div>
           {!this.props.item
-            ? " " :<CitiesList data={this.state.ciudades} />
+            ? " " :  <CitiesList data={this.state.ciudades} />
             // : citiesList 
           }
         </div>
@@ -69,4 +57,14 @@ class Cities extends Component {
 
 }
 
+const mapStateProps = state => {
+  return {
+    item: state.reducer.mostrar
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateEstado: () => dispatch(updateEstado()),
+  };
+};
 export default connect(mapStateProps, mapDispatchToProps)(Cities);
