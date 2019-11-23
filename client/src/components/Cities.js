@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import CitiesList from './CitiesList'
 import { connect } from 'react-redux';
-import updateEstado from '../actions/action';
+import updateEstado from '../actions/actionCity';
 
 
 const URL = "http://localhost:5000/cities";
@@ -37,10 +37,6 @@ class Cities extends Component {
 
     const title = "Cities";
 
-    // let citiesList = this.state.ciudades.map(
-    //   (ciudad)=>{ return <li>{ciudad.name}, {ciudad.country} </li>
-    // });
-
     return (
       
       <div className="App">
@@ -48,7 +44,6 @@ class Cities extends Component {
         <div>
           {!this.props.item
             ? " " :  <CitiesList data={this.state.ciudades} />
-            // : citiesList 
           }
         </div>
       </div>

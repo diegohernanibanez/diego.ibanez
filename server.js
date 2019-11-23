@@ -32,17 +32,32 @@ app.get("/cities", cors(), async (req, res) => {
 
 });
 
-app.get("/cities/:makeId", (req, res) => {
-  console.log(req.params.makeId);
-  res.send("Hola mundo")
-})
+app.get("/itinerarios", cors(), async (req, res) => {
+
+  itinerary.find({}, (err, respuesta) => {
+    if (err) return err;
+    res.send(respuesta);
+  });
+
+});
+
+app.get("/itinerarios/:id", cors(), async (req, res) => {
+
+  itinerary.find({ cityID: req.params.id }, (err, respuesta) => {
+    city.populate(respuesta, { path: "cityID" }, function (err, resp) {
+      if (err) return err;
+      res.send(resp);
+    });
+  });
+});
+
 
 app.post('/cities', (req, res) => {
   const newCity = new city({
     name: req.body.name,
     country: req.body.country
   });
-
+  
   city.find(
     {
       name: req.body.name,
@@ -50,26 +65,36 @@ app.post('/cities', (req, res) => {
     },
     (err, respuesta) => {
       if (respuesta.length !== 0) {
-
+        
         res.send("Ciudad Repetida")
-
+        
       } else {
-
-          newCity.save()
-
-            .then(city => {
-              res.send(city)
-            })
-
-            .catch(err => {
-              res.status(500).send("Server error")
-            })
-        }
+        
+        newCity.save()
+        
+        .then(city => {
+          res.send(city)
+        })
+        
+        .catch(err => {
+          res.status(500).send("Server error")
+        })
       }
+    }
     );
-});
-
-
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
-
+  });
+  
+  
+  
+  app.listen(port, () => console.log(`Listening on port ${port}`));
+  
+  
+  // app.get("/cities/:name", (req, res) => {
+  //   console.log(req.params.makeId);
+  //   let cityRequested = req.params.name;
+  //   		city.findOne({ name: cityRequested })
+  // 			.then(city => {
+  // 				res.send(city)
+  // 			})
+  // 			.catch(err => console.log(err));
+  // })

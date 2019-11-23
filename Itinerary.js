@@ -3,11 +3,12 @@ let mongoose = require('mongoose')
 let itinerariesSchema = new mongoose.Schema({
     title: String,
     city: String,
-    username: Array,
+    country: Array,
     rating: Number,
     duration: Number,
-    priece: Number,
-    hashtags: Array
+    price: Number,
+    hashtags: Array,
+    cityID: mongoose.Schema.Types.ObjectId
 })
 
 

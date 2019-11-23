@@ -6,7 +6,7 @@ export class Cities extends Component {
   render() {
     return (
       <li key={this.props.ciudad._id}>
-        <Link to={`ItinerariesList/${this.props.ciudad._id}`}>{this.props.ciudad.name}, {this.props.ciudad.country}</Link>
+        <Link to={`itinerarios/${this.props.ciudad._id}`}>{this.props.ciudad.name}, {this.props.ciudad.country}</Link>
       </li>
     )
   }
