@@ -42,10 +42,10 @@ app.get("/itinerarios", cors(), async (req, res) => {
 });
 
 app.get("/itinerarios/:id", cors(), async (req, res) => {
-
   itinerary.find({ cityID: req.params.id }, (err, respuesta) => {
     city.populate(respuesta, { path: "cityID" }, function (err, resp) {
       if (err) return err;
+      console.log(resp);
       res.send(resp);
     });
   });
