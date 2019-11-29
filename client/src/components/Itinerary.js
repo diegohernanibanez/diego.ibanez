@@ -51,11 +51,10 @@ class Itinerary extends Component {
           <div className="card-body">User: {i.username}</div>
           <div className="card-body">Rating: {i.rating}</div>
           <div className="card-body">Duration: {i.duration}</div>
-          <div className="card-body">$$ {i.price}</div>
-          <div className="card-body">Hashtags: {i.hashtags}</div>
+          <div className="card-body">Price: {i.price}</div>
+          <div className="card-body">Hashtags: {i.hashtags.join(" ")}</div>
         </div>
       });
-    console.log(URL);
 
     return (
 
