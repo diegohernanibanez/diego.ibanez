@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import axios from "axios";
-import getItineraries from '../actions/actionItinerary'
+import getItineraries from '../actions/actionItinerary';
 
 const mapStateProps = state => {
   return {
@@ -62,7 +62,7 @@ class Itinerary extends Component {
         <h2 className="App-title">asd</h2>
         <div>
           {!this.props.item
-            ? "Fetching quotes..." : itin}
+            ? "Cargando..." : itin}
         </div>
       </div>
     );
